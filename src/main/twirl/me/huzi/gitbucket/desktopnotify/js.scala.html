@@ -1,0 +1,63 @@
+@()(implicit context: gitbucket.core.controller.Context)
+
+@import context._
+@import gitbucket.core.view.helpers._
+@import me.huzi.gitbucket.desktopnotify.html._
+
+@js_cookie_js()
+
+@desktop_notify()
+
+var Notify = {
+  Timer1: "",
+
+  Def: {
+    COOKIES_KEY: "gitbucketsnotify",
+    TAG: "gitbucket"
+  },
+
+  func: function () {
+    var self = this;
+
+    var flag = Cookies.get(self.Def.COOKIES_KEY);
+    var id = (flag && parseInt(flag)) ? flag : "0";
+
+    $.getJSON("@path/dnotify/id/" + id, null, function (obj) {
+      if (flag) {
+        var l = obj.reverse();
+        l.forEach(function (a, i) {
+          notify.createNotification(a.activityType, {
+            body: a.message + "\n" + a.additionalInfo,
+            icon: "@path/assets/common/images/gitbucket.png",
+            tag: self.Def.TAG
+          });
+          Cookies.set(self.Def.COOKIES_KEY, a.activityId);
+        });
+      } else {
+        for (var i in obj) {
+          Cookies.set(self.Def.COOKIES_KEY, obj[i].activityId);
+          break;
+        }
+      }
+    });
+  }
+};
+
+$(document).ready(function () {
+  var setting = function () {
+    notify.config({autoClose: 6000});
+    Notify.Timer1 = setInterval(function(){Notify.func()}, 3000);
+  };
+
+  switch (notify.permissionLevel()) {
+    case notify.PERMISSION_DEFAULT:
+      notify.requestPermission(function () {
+        setting();
+      });
+      break;
+    case notify.PERMISSION_GRANTED:
+      setting();
+      break;
+    default: return
+  }
+});
