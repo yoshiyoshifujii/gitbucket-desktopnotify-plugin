@@ -13,6 +13,7 @@ class Plugin extends gitbucket.core.plugin.Plugin {
   override val description: String = "It will notify the activity to the desktop."
 
   override val versions: List[Version] = List(
+    Version(3, 12),
     Version(1, 0)
   )
 
