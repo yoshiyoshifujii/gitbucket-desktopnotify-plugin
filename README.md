@@ -1,6 +1,6 @@
 # gitbucket-desktopnotify-plugin
 
-This plugin enhances [takezoe/gitbucket](https://github.com/takezoe/gitbucket) by providing an notify desktop.
+This plugin enhances [gitbucket/gitbucket](https://github.com/gitbucket/gitbucket) by providing an notify desktop.
 
 ## Features
 
@@ -14,6 +14,10 @@ It will notify the if there is something of activity desktop
 - Restart GitBucket
 
 ## Release Notes
+
+### 4.0
+
+- update to GitBucket 4.0
 
 ### 1.0
 
