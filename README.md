@@ -15,6 +15,11 @@ It will notify the if there is something of activity desktop
 
 ## Release Notes
 
+### 4.3
+
+- update to GitBucket 4.3
+- support for anonymous access deny
+
 ### 4.0
 
 - update to GitBucket 4.0

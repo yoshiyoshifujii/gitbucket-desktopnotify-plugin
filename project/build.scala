@@ -7,7 +7,7 @@ object MyBuild extends Build {
 
   val Organization = "me.huzi.gitbucket"
   val Name = "gitbucket-desktopnotify-plugin"
-  val Version = "4.0.0"
+  val Version = "4.3.0"
   val ScalaVersion = "2.11.6"
 
   lazy val project = Project (
@@ -26,10 +26,10 @@ object MyBuild extends Build {
       "amateras-snapshot-repo" at "http://amateras.sourceforge.jp/mvn-snapshot/"
     ),
     libraryDependencies ++= Seq(
-      "gitbucket"          % "gitbucket-assembly" % "4.0.0" % "provided",
-      "com.typesafe.play" %% "twirl-compiler"     % "1.0.4"  % "provided",
-      "javax.servlet"      % "javax.servlet-api"  % "3.1.0"  % "provided",
-      "jp.sf.amateras"    %% "scalatra-forms"     % "0.2.0"  % "provided"
+      "io.github.gitbucket" %% "gitbucket"          % "4.3.0" % "provided",
+      "com.typesafe.play"   %% "twirl-compiler"     % "1.0.4" % "provided",
+      "javax.servlet"       % "javax.servlet-api"   % "3.1.0" % "provided",
+      "jp.sf.amateras"      %% "scalatra-forms"     % "0.2.0" % "provided"
     ),
     javacOptions in compile ++= Seq("-target", "8", "-source", "8")
   ).enablePlugins(SbtTwirl)

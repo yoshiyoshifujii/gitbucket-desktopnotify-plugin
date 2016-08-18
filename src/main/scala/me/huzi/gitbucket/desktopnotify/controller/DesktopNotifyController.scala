@@ -18,11 +18,6 @@ class DesktopNotifyController extends DesktopNotifyControllerBase with DNotifyAc
 trait DesktopNotifyControllerBase extends ControllerBase {
   self: DNotifyActivityService with UsersAuthenticator =>
 
-  get("/dnotify/js"){
-    contentType = "text/javascript"
-    me.huzi.gitbucket.desktopnotify.html.js()
-  }
-
   get("/dnotify/id/:id"){
     contentType = "application/json"
     JsonFormat(getActivitiesOverId(context.loginAccount, params("id").toInt))

@@ -1,13 +1,3 @@
-@()(implicit context: gitbucket.core.controller.Context)
-
-@import context._
-@import gitbucket.core.view.helpers._
-@import me.huzi.gitbucket.desktopnotify.html._
-
-@js_cookie_js()
-
-@desktop_notify()
-
 var Notify = {
   Timer1: "",
 
@@ -22,13 +12,13 @@ var Notify = {
     var flag = Cookies.get(self.Def.COOKIES_KEY);
     var id = (flag && parseInt(flag)) ? flag : "0";
 
-    $.getJSON("@path/dnotify/id/" + id, null, function (obj) {
+    $.getJSON(path + "/dnotify/id/" + id, null, function (obj) {
       if (flag) {
         var l = obj.reverse();
         l.forEach(function (a, i) {
           notify.createNotification(a.activityType, {
             body: a.message + "\n" + a.additionalInfo,
-            icon: "@path/assets/common/images/gitbucket.png",
+            icon: path + "/assets/common/images/gitbucket.png",
             tag: self.Def.TAG
           });
           Cookies.set(self.Def.COOKIES_KEY, a.activityId);
