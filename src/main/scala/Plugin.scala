@@ -2,7 +2,6 @@ import javax.servlet.ServletContext
 import gitbucket.core.plugin.PluginRegistry
 import gitbucket.core.service.SystemSettingsService.SystemSettings
 import io.github.gitbucket.solidbase.model.Version
-import gitbucket.core.controller.ControllerBase
 import me.huzi.gitbucket.desktopnotify.controller.DesktopNotifyController
 
 class Plugin extends gitbucket.core.plugin.Plugin {
@@ -12,11 +11,12 @@ class Plugin extends gitbucket.core.plugin.Plugin {
 
   override val description: String = "It will notify the activity to the desktop."
 
-  override val versions: List[Version] = List(
+  override val versions: Seq[Version] = Seq(
     new Version("1.0"),
     new Version("3.12"),
     new Version("4.0.0"),
-    new Version("4.3.0")
+    new Version("4.3.0"),
+    new Version("4.10.0")
   )
 
   override val controllers = Seq(
