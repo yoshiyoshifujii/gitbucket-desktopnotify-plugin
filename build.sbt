@@ -1,17 +1,17 @@
 val Organization = "me.huzi.gitbucket"
 val ProjectName = "gitbucket-desktopnotify-plugin"
-val ProjectVersion = "4.32.0"
-
-lazy val root = (project in file(".")).enablePlugins(SbtTwirl)
+val ProjectVersion = "5.0.0"
 
 organization := Organization
 name := ProjectName
 version := ProjectVersion
-scalaVersion := "2.13.0"
-gitbucketVersion := "4.32.0"
+scalaVersion := "2.13.18"
+gitbucketVersion := "4.48.0"
 
-scalacOptions := Seq("-deprecation", "-feature", "-language:postfixOps", "-Ydelambdafy:method", "-target:jvm-1.8")
-javacOptions in compile ++= Seq("-target", "8", "-source", "8")
+scalacOptions ++= Seq("-deprecation", "-feature")
 
-useJCenter := true
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % "test"
 
+// Tests run against a throwaway GITBUCKET_HOME
+Test / fork := true
+Test / javaOptions += s"-Dgitbucket.home=${(Test / target).value / "gitbucket-home"}"
